@@ -137,7 +137,7 @@ rm cilium-linux-${CLI_ARCH}.tar.gz{,.sha256sum}
 Install Cilium on Kubernetes:
 
 ```sh
-cilium install --version 1.15.5
+cilium install --version 1.18.5
 ```
 
 ### Step 10: Verify the Cluster and Test (master node)
