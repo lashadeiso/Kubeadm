@@ -14,6 +14,9 @@ This guide provides step-by-step instructions to set up a Kubernetes cluster on 
 ```sh
 sudo apt update
 sudo apt upgrade
+
+> 💡 NOTE:
+> სისტემის პაკეტები განახლდება უახლეს ვერსიამდე. ეს კრიტიკულია უსაფრთხოებისა და სტაბილურობისთვის.
 ```
 
 ### Step 2: Disable Swap (all nodes)
