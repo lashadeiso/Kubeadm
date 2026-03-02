@@ -14,9 +14,6 @@ This guide provides step-by-step instructions to set up a Kubernetes cluster on 
 ```sh
 sudo apt update
 sudo apt upgrade
-
-> 💡 NOTE:
-> სისტემის პაკეტები განახლდება უახლეს ვერსიამდე. ეს კრიტიკულია უსაფრთხოებისა და სტაბილურობისთვის.
 ```
 
 ### Step 2: Disable Swap (all nodes)
@@ -24,9 +21,6 @@ sudo apt upgrade
 ```sh
 sudo swapoff -a
 sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
-
-> 💡 NOTE:
-> Kubernetes-ს swap არ უყვარს — მეხსიერების მართვა თავად სურს. თუ swap ჩართულია, kubelet უბრალოდ არ გაეშვება. `fstab`-ის ჩანაწერის კომენტარში ჩასმა reboot-ის შემდეგაც swap-ს გამორთულს ტოვებს.
 ```
 
 ### Step 3: Add Kernel Parameters (all nodes)
@@ -41,10 +35,6 @@ EOF
 
 sudo modprobe overlay
 sudo modprobe br_netfilter
-
-> 💡 NOTE:
-> `overlay` - Containerd-ის ფაილური სისტემისთვის საჭირო 
-> `br_netfilter` - bridge traffic-ის iptables-ით ფილტრაციისთვის
 ```
 
 Configure the critical kernel parameters for Kubernetes:
@@ -57,11 +47,6 @@ net.ipv4.ip_forward = 1
 EOF
 
 sudo sysctl --system
-
-> 💡 NOTE:
-> `net.bridge.bridge-nf-call-iptables = 1` - Pod-ებს შორის traffic-ი iptables-ს გავლით 
-> `net.bridge.bridge-nf-call-ip6tables = 1` -  იგივე IPv6-ისთვის 
-> `net.ipv4.ip_forward = 1` - node-ებს შორის packet-ების გადაგზავნა 
 ```
 
 ### Step 4: Install Containerd Runtime (all nodes)
